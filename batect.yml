@@ -72,4 +72,4 @@ tasks:
     group: Dependency management tasks
     run:
       container: build-env
-      command: go get -u
+      command: sh -c 'go get -u && go mod tidy'
