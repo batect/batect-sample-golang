@@ -66,3 +66,10 @@ tasks:
     run:
       container: build-env
       command: go vet
+
+  update:
+    description: Update to latest minor or patch update of all dependencies.
+    group: Dependency management tasks
+    run:
+      container: build-env
+      command: go get -u
