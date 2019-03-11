@@ -13,6 +13,9 @@ containers:
       enabled: true
       home_directory: /home/container-user
 
+  app:
+    build_directory: dev-infrastructure/app
+
 tasks:
   setup:
     description: Download all dependencies used by the application.
@@ -24,7 +27,7 @@ tasks:
     description: Build the application.
     run:
       container: build-env
-      command: go build .
+      command: go build -o dev-infrastructure/app/batect-sample-golang .
 
   unitTest:
     description: Run the unit tests.
@@ -37,3 +40,10 @@ tasks:
     run:
       container: build-env
       command: bash
+
+  run:
+    description: Run the application.
+    prerequisites:
+      - build
+    run:
+      container: app
