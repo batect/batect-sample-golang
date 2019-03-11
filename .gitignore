@@ -1,0 +1,16 @@
+# Golang
+
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+batect-sample-golang
+.go-cache/
+
+# JetBrains (IntelliJ etc.)
+.idea/
+*.iml

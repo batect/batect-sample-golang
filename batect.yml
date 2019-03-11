@@ -1,0 +1,39 @@
+containers:
+  build-env:
+    build_directory: dev-infrastructure/build-env
+    volumes:
+      - local: .
+        container: /code
+        options: cached
+      - local: .go-cache
+        container: /go
+        options: delegated
+    working_directory: /code
+    run_as_current_user:
+      enabled: true
+      home_directory: /home/container-user
+
+tasks:
+  setup:
+    description: Download all dependencies used by the application.
+    run:
+      container: build-env
+      command: go mod download
+
+  build:
+    description: Build the application.
+    run:
+      container: build-env
+      command: go build .
+
+  unitTest:
+    description: Run the unit tests.
+    run:
+      container: build-env
+      command: go test
+
+  shell:
+    description: Start a shell in the development environment.
+    run:
+      container: build-env
+      command: bash
