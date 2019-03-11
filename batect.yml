@@ -52,3 +52,17 @@ tasks:
       - build
     run:
       container: app
+
+  checkFormatting:
+    description: Check all files are formatted according to the Golang standard.
+    group: Linting tasks
+    run:
+      container: build-env
+      command: ./util/checkFormatting.sh
+
+  vet:
+    description: Check for errors reported by 'go vet'.
+    group: Linting tasks
+    run:
+      container: build-env
+      command: go vet
