@@ -19,30 +19,35 @@ containers:
 tasks:
   setup:
     description: Download all dependencies used by the application.
+    group: Setup tasks
     run:
       container: build-env
       command: go mod download
 
   build:
     description: Build the application.
+    group: Build tasks
     run:
       container: build-env
       command: go build -o dev-infrastructure/app/batect-sample-golang .
 
   unitTest:
     description: Run the unit tests.
+    group: Test tasks
     run:
       container: build-env
       command: go test
 
   shell:
     description: Start a shell in the development environment.
+    group: Utility tasks
     run:
       container: build-env
       command: bash
 
   run:
     description: Run the application.
+    group: Test tasks
     prerequisites:
       - build
     run:
