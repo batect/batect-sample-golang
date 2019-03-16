@@ -26,7 +26,7 @@ var _ = Describe("The application", func() {
 			Expect(string(body)).To(Equal("pong"))
 		})
 
-		It("should return a HTTP 200 status code", func () {
+		It("should return a HTTP 200 status code", func() {
 			Expect(response.StatusCode).To(Equal(http.StatusOK))
 		})
 	})
