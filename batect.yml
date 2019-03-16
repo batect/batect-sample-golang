@@ -22,7 +22,7 @@ tasks:
     group: Setup tasks
     run:
       container: build-env
-      command: go mod download
+      command: go mod download && go get github.com/onsi/ginkgo/ginkgo
 
   build:
     description: Build the application.
@@ -39,7 +39,14 @@ tasks:
     group: Test tasks
     run:
       container: build-env
-      command: go test
+      command: ginkgo
+
+  continuousUnitTest:
+    description: Run the unit tests, and re-run them when any code changes are detected.
+    group: Test tasks
+    run:
+      container: build-env
+      command: sh -c 'ginkgo && ginkgo watch'
 
   shell:
     description: Start a shell in the development environment.
@@ -55,6 +62,9 @@ tasks:
       - build
     run:
       container: app
+      ports:
+        - local: 8080
+          container: 8080
 
   checkFormatting:
     description: Check all files are formatted according to the Golang standard.
