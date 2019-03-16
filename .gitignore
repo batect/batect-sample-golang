@@ -9,7 +9,7 @@
 *.out
 
 batect-sample-golang
-.go-cache/
+vendor/
 
 # JetBrains (IntelliJ etc.)
 .idea/

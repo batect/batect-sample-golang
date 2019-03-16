@@ -1,13 +1,12 @@
 containers:
   build-env:
-    build_directory: dev-infrastructure/build-env
+    image: golang:1.12.1-stretch
     volumes:
       - local: .
         container: /code
         options: cached
-      - local: .go-cache
-        container: /go
-        options: delegated
+    environment:
+      GOFLAGS: -mod=vendor
     working_directory: /code
     run_as_current_user:
       enabled: true
@@ -22,7 +21,7 @@ tasks:
     group: Setup tasks
     run:
       container: build-env
-      command: go mod download
+      command: go mod vendor
 
   build:
     description: Build the application.
@@ -30,6 +29,9 @@ tasks:
     run:
       container: build-env
       command: go build -o dev-infrastructure/app/batect-sample-golang .
+      environment:
+        CGO_ENABLED: 0
+        GOOS: linux
 
   unitTest:
     description: Run the unit tests.
