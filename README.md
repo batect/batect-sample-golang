@@ -1,5 +1,6 @@
 # batect-sample-golang
 
+[![CircleCI branch](https://img.shields.io/circleci/project/github/charleskorn/batect-sample-golang/master.svg)](https://circleci.com/gh/charleskorn/batect-sample-golang)
 [![Go Report Card](https://goreportcard.com/badge/github.com/charleskorn/batect-sample-golang)](https://goreportcard.com/report/github.com/charleskorn/batect-sample-golang)
 [![License](https://img.shields.io/github/license/charleskorn/batect-sample-golang.svg)](https://opensource.org/licenses/Apache-2.0)
 
