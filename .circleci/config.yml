@@ -1,0 +1,12 @@
+version: 2
+
+jobs:
+  build:
+    machine:
+      enabled: true
+      image: circleci/classic:201808-01
+    steps:
+      - checkout
+      - run: ./batect setup
+      - run: ./batect build
+      - run: ./batect unitTest
