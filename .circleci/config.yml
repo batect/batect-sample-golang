@@ -7,6 +7,18 @@ jobs:
       image: circleci/classic:201808-01
     steps:
       - checkout
-      - run: ./batect setup
-      - run: ./batect build
-      - run: ./batect unitTest
+      - run:
+          name: Install dependencies
+          command: ./batect setup
+      - run:
+          name: Build
+          command: ./batect build
+      - run:
+          name: Check formatting
+          command: ./batect checkFormatting
+      - run:
+          name: Vet
+          command: ./batect vet
+      - run:
+          name: Run unit tests
+          command: ./batect unitTest
