@@ -5,8 +5,9 @@ containers:
       - local: .
         container: /code
         options: cached
-    environment:
-      GOFLAGS: -mod=vendor
+      - local: .go-cache
+        container: /go
+        options: delegated
     working_directory: /code
     run_as_current_user:
       enabled: true
@@ -21,7 +22,7 @@ tasks:
     group: Setup tasks
     run:
       container: build-env
-      command: go mod vendor
+      command: go mod download
 
   build:
     description: Build the application.
