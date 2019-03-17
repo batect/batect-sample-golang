@@ -7,6 +7,8 @@ jobs:
       image: circleci/classic:201808-01
     steps:
       - checkout
+      - restore_cache:
+          key: batect-sample-golang-{{ arch }}-{{ checksum "go.mod" }}-{{ checksum "go.sum" }}
       - run:
           name: Install dependencies
           command: ./batect setup
@@ -27,3 +29,7 @@ jobs:
           command: ./batect journeyTest
       - store_test_results:
           path: test-results
+      - save_cache:
+          key: batect-sample-golang-{{ arch }}-{{ checksum "go.mod" }}-{{ checksum "go.sum" }}
+          paths:
+            - .go-cache
