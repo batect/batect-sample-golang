@@ -22,7 +22,7 @@ tasks:
     group: Setup tasks
     run:
       container: build-env
-      command: go mod download && go get github.com/onsi/ginkgo/ginkgo
+      command: sh -c 'go mod download && go get github.com/onsi/ginkgo/ginkgo'
 
   build:
     description: Build the application.
