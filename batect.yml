@@ -40,6 +40,8 @@ tasks:
     run:
       container: build-env
       command: ginkgo -tags unitTests
+      environment:
+        REPORT_PATH: test-results/unitTests
 
   continuousUnitTest:
     description: Run the unit tests, and re-run them when any code changes are detected.
@@ -58,6 +60,8 @@ tasks:
     run:
       container: build-env
       command: ginkgo -tags journeyTests
+      environment:
+        REPORT_PATH: test-results/journeyTests
 
   shell:
     description: Start a shell in the development environment.
