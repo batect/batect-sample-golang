@@ -22,3 +22,6 @@ jobs:
       - run:
           name: Run unit tests
           command: ./batect unitTest
+      - run:
+          name: Run journey tests
+          command: ./batect journeyTest

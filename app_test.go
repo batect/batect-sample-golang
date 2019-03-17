@@ -1,3 +1,5 @@
+// +build unitTests
+
 package main
 
 import (

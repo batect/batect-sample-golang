@@ -39,7 +39,7 @@ tasks:
     group: Test tasks
     run:
       container: build-env
-      command: ginkgo
+      command: ginkgo -tags unitTests
 
   continuousUnitTest:
     description: Run the unit tests, and re-run them when any code changes are detected.
@@ -47,6 +47,17 @@ tasks:
     run:
       container: build-env
       command: sh -c 'ginkgo && ginkgo watch'
+
+  journeyTest:
+    description: Run the journey tests.
+    group: Test tasks
+    prerequisites:
+      - build
+    dependencies:
+      - app
+    run:
+      container: build-env
+      command: ginkgo -tags journeyTests
 
   shell:
     description: Start a shell in the development environment.
