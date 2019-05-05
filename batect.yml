@@ -14,7 +14,7 @@ containers:
       home_directory: /home/container-user
 
   app:
-    build_directory: dev-infrastructure/app
+    build_directory: .batect/app
 
 tasks:
   setup:
@@ -29,7 +29,7 @@ tasks:
     group: Build tasks
     run:
       container: build-env
-      command: go build -o dev-infrastructure/app/batect-sample-golang .
+      command: go build -o .batect/app/batect-sample-golang .
       environment:
         CGO_ENABLED: 0
         GOOS: linux
