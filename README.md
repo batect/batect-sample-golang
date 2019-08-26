@@ -10,6 +10,8 @@ A very simple Golang application with [batect](https://github.com/charleskorn/ba
 
 Run `./batect --list-tasks` to see the available commands and their descriptions, then `./batect <task>` to run `<task>`.
 
+Most tasks require you to have downloaded the application's dependencies first. `./batect setup` will do this for you.
+
 All of this is controlled by [batect.yml](batect.yml), and it shows a number of common patterns you might adopt in your own
 application.
 
