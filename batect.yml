@@ -1,6 +1,6 @@
 containers:
   build-env:
-    image: golang:1.12.1-stretch
+    image: golang:1.13.1-stretch
     volumes:
       - local: .
         container: /code
