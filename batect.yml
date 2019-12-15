@@ -50,7 +50,7 @@ tasks:
     group: Test tasks
     run:
       container: build-env
-      command: sh -c 'ginkgo && ginkgo watch'
+      command: ginkgo watch -tags unitTests
 
   journeyTest:
     description: Run the journey tests.
