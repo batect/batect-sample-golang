@@ -1,13 +1,13 @@
 containers:
   build-env:
-    image: golang:1.13.1-stretch
+    build_directory: .batect/build-env
     volumes:
       - local: .
         container: /code
         options: cached
-      - local: .go-cache
+      - type: cache
+        name: go-cache
         container: /go
-        options: delegated
     working_directory: /code
     environment:
       GOCACHE: /go/cache
