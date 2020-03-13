@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-unformatted_files=$(gofmt -l $(find . -name '*.go' -not -path './.go-cache/*'))
+unformatted_files=$(gofmt -l $(find . -name '*.go' -not -path './.batect/caches/*'))
 
 if [ "$unformatted_files" == "" ]; then
     echo "All files are formatted correctly."
