@@ -1,6 +1,6 @@
 containers:
   build-env:
-    build_directory: .batect/build-env
+    image: golang:1.14.0-stretch
     volumes:
       - local: .
         container: /code
