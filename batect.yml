@@ -95,7 +95,7 @@ tasks:
     group: Linting tasks
     run:
       container: build-env
-      command: go vet
+      command: go vet .
 
   update:
     description: Update to latest minor or patch update of all dependencies.
