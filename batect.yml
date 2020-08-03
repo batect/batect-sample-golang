@@ -1,20 +1,4 @@
 containers:
-  build-env:
-    image: golang:1.14.0-stretch
-    volumes:
-      - local: .
-        container: /code
-        options: cached
-      - type: cache
-        name: go-cache
-        container: /go
-    working_directory: /code
-    environment:
-      GOCACHE: /go/cache
-    run_as_current_user:
-      enabled: true
-      home_directory: /home/container-user
-
   app:
     build_directory: .batect/app
 
@@ -23,14 +7,14 @@ tasks:
     description: Download all dependencies used by the application.
     group: Setup tasks
     run:
-      container: build-env
+      container: golang-build-env
       command: sh -c 'go mod download && go get github.com/onsi/ginkgo/ginkgo'
 
   build:
     description: Build the application.
     group: Build tasks
     run:
-      container: build-env
+      container: golang-build-env
       command: go build -o .batect/app/batect-sample-golang .
       environment:
         CGO_ENABLED: 0
@@ -40,7 +24,7 @@ tasks:
     description: Run the unit tests.
     group: Test tasks
     run:
-      container: build-env
+      container: golang-build-env
       command: ginkgo -tags unitTests
       environment:
         REPORT_PATH: test-results/unitTests
@@ -49,7 +33,7 @@ tasks:
     description: Run the unit tests, and re-run them when any code changes are detected.
     group: Test tasks
     run:
-      container: build-env
+      container: golang-build-env
       command: ginkgo watch -tags unitTests
 
   journeyTest:
@@ -60,7 +44,7 @@ tasks:
     dependencies:
       - app
     run:
-      container: build-env
+      container: golang-build-env
       command: ginkgo -tags journeyTests
       environment:
         REPORT_PATH: test-results/journeyTests
@@ -69,7 +53,7 @@ tasks:
     description: Start a shell in the development environment.
     group: Utility tasks
     run:
-      container: build-env
+      container: golang-build-env
       command: bash
 
   run:
@@ -87,19 +71,24 @@ tasks:
     description: Check all files are formatted according to the Golang standard.
     group: Linting tasks
     run:
-      container: build-env
+      container: golang-build-env
       command: ./util/checkFormatting.sh
 
   vet:
     description: Check for errors reported by 'go vet'.
     group: Linting tasks
     run:
-      container: build-env
+      container: golang-build-env
       command: go vet .
 
   update:
     description: Update to latest minor or patch update of all dependencies.
     group: Dependency management tasks
     run:
-      container: build-env
+      container: golang-build-env
       command: sh -c 'go get -u && go mod tidy'
+
+include:
+  - type: git
+    repo: https://github.com/batect/golang-bundle.git
+    ref: 0.2.0
