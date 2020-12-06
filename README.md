@@ -4,7 +4,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/batect/batect-sample-golang)](https://goreportcard.com/report/github.com/batect/batect-sample-golang)
 [![License](https://img.shields.io/github/license/batect/batect-sample-golang.svg)](https://opensource.org/licenses/Apache-2.0)
 
-A very simple Golang application with [batect](https://github.com/batect/batect)-based build and testing environments.
+A very simple Golang application with [Batect](https://github.com/batect/batect)-based build and testing environments.
 
 ## Building, testing, running etc.
 
@@ -17,4 +17,4 @@ application.
 
 ## More information
 
-You can find further sample projects on [this page in the batect documentation](https://batect.charleskorn.com/SampleProjects.html).
+You can find further sample projects on [this page in the batect documentation](https://batect.dev/docs/getting-started/sample-projects).
