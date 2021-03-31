@@ -1,4 +1,4 @@
-FROM alpine:3.13.3
+FROM alpine:3.13.4
 
 RUN mkdir -p /app
 COPY batect-sample-golang /app
