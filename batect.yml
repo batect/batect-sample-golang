@@ -91,4 +91,4 @@ tasks:
 include:
   - type: git
     repo: https://github.com/batect/golang-bundle.git
-    ref: 0.9.0
+    ref: 0.10.0
