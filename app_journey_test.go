@@ -1,3 +1,4 @@
+//go:build journeyTests
 // +build journeyTests
 
 package main
