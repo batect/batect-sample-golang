@@ -8,7 +8,7 @@ tasks:
     group: Setup tasks
     run:
       container: golang-build-env
-      command: sh -c 'go mod download && go get github.com/onsi/ginkgo/ginkgo'
+      command: sh -c 'go mod download && go install github.com/onsi/ginkgo/v2/ginkgo'
 
   build:
     description: Build the application.
@@ -25,16 +25,14 @@ tasks:
     group: Test tasks
     run:
       container: golang-build-env
-      command: ginkgo -tags unitTests
-      environment:
-        REPORT_PATH: test-results/unitTests
+      command: sh -c "mkdir -p test-results/unitTests && ginkgo --skip-file='_journey_test.go$' --junit-report test-results/unitTests/report.xml"
 
   continuousUnitTest:
     description: Run the unit tests, and re-run them when any code changes are detected.
     group: Test tasks
     run:
       container: golang-build-env
-      command: ginkgo watch -tags unitTests
+      command: sh -c "mkdir -p test-results/unitTests && ginkgo watch --skip-file='_journey_test.go$' --junit-report test-results/unitTests/report.xml"
 
   journeyTest:
     description: Run the journey tests.
@@ -45,9 +43,7 @@ tasks:
       - app
     run:
       container: golang-build-env
-      command: ginkgo -tags journeyTests
-      environment:
-        REPORT_PATH: test-results/journeyTests
+      command: sh -c "mkdir -p test-results/journeyTests && ginkgo --focus-file='_journey_test.go$' --junit-report test-results/journeyTests/report.xml"
 
   shell:
     description: Start a shell in the development environment.
