@@ -25,14 +25,14 @@ tasks:
     group: Test tasks
     run:
       container: golang-build-env
-      command: ginkgo -tags unitTests --junit-report test-results/unitTests/report.xml
+      command: sh -c "mkdir -p test-results/unitTests && ginkgo --skip-file='_journey_test.go$' --junit-report test-results/unitTests/report.xml"
 
   continuousUnitTest:
     description: Run the unit tests, and re-run them when any code changes are detected.
     group: Test tasks
     run:
       container: golang-build-env
-      command: ginkgo watch -tags unitTests --junit-report test-results/unitTests/report.xml
+      command: sh -c "mkdir -p test-results/unitTests && ginkgo watch --skip-file='_journey_test.go$' --junit-report test-results/unitTests/report.xml"
 
   journeyTest:
     description: Run the journey tests.
@@ -43,7 +43,7 @@ tasks:
       - app
     run:
       container: golang-build-env
-      command: ginkgo -tags journeyTests --junit-report test-results/journeyTests/report.xml
+      command: sh -c "mkdir -p test-results/journeyTests && ginkgo --focus-file='_journey_test.go$' --junit-report test-results/journeyTests/report.xml"
 
   shell:
     description: Start a shell in the development environment.

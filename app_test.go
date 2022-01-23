@@ -1,6 +1,3 @@
-//go:build unitTests
-// +build unitTests
-
 package main
 
 import (
