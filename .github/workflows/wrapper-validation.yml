@@ -1,0 +1,14 @@
+name: Validate Batect wrapper scripts
+
+on: [push, pr]
+
+jobs:
+  validate:
+    name: "Validate wrapper scripts"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3.0.2
+
+      - name: Validate Batect wrapper scripts
+        uses: batect/batect-wrapper-validation-action@v0.3.1
