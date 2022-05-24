@@ -1,6 +1,6 @@
 name: Validate Batect wrapper scripts
 
-on: [push, pr]
+on: [push, pull_request]
 
 jobs:
   validate:
