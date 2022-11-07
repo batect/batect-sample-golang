@@ -1,7 +1,7 @@
 module github.com/batect/batect-sample-golang
 
 require (
-	github.com/onsi/ginkgo/v2 v2.4.0
+	github.com/onsi/ginkgo/v2 v2.5.0
 	github.com/onsi/gomega v1.24.0
 	github.com/sirupsen/logrus v1.9.0
 )
