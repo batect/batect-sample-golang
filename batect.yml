@@ -87,4 +87,4 @@ tasks:
 include:
   - type: git
     repo: https://github.com/batect/golang-bundle.git
-    ref: 0.43.0
+    ref: 0.44.0
